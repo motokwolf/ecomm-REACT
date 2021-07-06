@@ -1,9 +1,10 @@
 import React from 'react'
-import StudentRow from 'components/StudentRow'
+import ProductRow from 'components/ProductRow'
+import Pagination from 'components/Pagination'
 
 const SearchResults = ({result}) => {
 
-  const theStudents = result.slice(0,3).map((student) => <StudentRow key={student.id} data={student} />)
+  const theProduct = result.slice(0,8).map((product) => <ProductRow key={product.id} data={product} />)
   // Pagination is next
 
   // How many are in the original set (total that meet the criteria)?
@@ -12,15 +13,20 @@ const SearchResults = ({result}) => {
 
 
   return (
-    <div style={{backgroundColor: 'lightsteelblue', padding: `1em`}}>
-      <ul id="studentTable" className="records" style={{backgroundColor: `salmon`, padding: `1em`}}>
-        {theStudents}
-      </ul>
-
-      <p id="numStudents" style={{backgroundColor: `lightgreen`}}>
-        {theStudents.length} {(theStudents.length === 1) ? `student` : `students`} of {result.length}
-      </p>
+  <>
+    <div className="results">
+      <section >
+      <h2 className="subheading">Results</h2>
+      <ul id="productsTable" className="productGrid">{theProduct}</ul>
+      </section>
+      <p id="numProducts" style={{textAlign: `center`}}>
+    {theProduct.length} {(theProduct.length === 1) ? `product` : `products`} of {result.length}
+    </p>
     </div>
+    
+    {/*<Pagination />*/}
+    
+  </>
   )
 }
 

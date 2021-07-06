@@ -5,7 +5,7 @@ import Footer from 'components/Footer'
 const Layout = ({children}) => {
 
   return (
-    <div className="layout">
+    <>
       <Header />
       
       <main className="toplevel-main container">
@@ -13,7 +13,7 @@ const Layout = ({children}) => {
       </main>
 
       <Footer />
-    </div>
+    </>
   )
 }
 
