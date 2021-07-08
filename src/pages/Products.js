@@ -16,25 +16,26 @@ const Products = ({data}) => {
     sort: (a, b) => a.ins - b.ins
   })
 
+ 
+
   // For convenience, destructure all of the values into local variables
   const {minRating, query, colourss, sort} = searchState
 
+  
 
   // ****** FILTER ******
   // Filter the results into a new array that's the same size or smaller
   const searchResult = data
                       .filter(({rating}) => rating >= Number(minRating))
                       .filter(({name}) => name.toUpperCase().includes(query.toUpperCase()))
-                      //.filter(({colours}) => colours.includes(colourss.value))
+                      .filter(({colours}) => colourss.length === 0 || 
+                                             colours.filter((colour) => colourss.includes(colour)).length > 0)
                       .sort(sort)
 
-  
 
 
   // ****** EVENT LISTENERS *******
-  // When the GPA value changes....
   const handleRatingChange = (event) => {
-    //setMinGpa(Number(event.target.value))
 
     setSearchState({
       ...searchState,
@@ -51,13 +52,22 @@ const Products = ({data}) => {
     })
   }
 
-  const handleColourChange = (event) => {
+
+  
+  const handleColourChange = ({target}) => {
     //setQuery(event.target.value)
 
-    setSearchState({
-      ...searchState,
-      colourss: event.target.value
-    })
+    if (target.checked) {
+      setSearchState({
+        ...searchState, 
+        colourss: [...searchState.colourss, target.value]
+      })
+    } else {
+      setSearchState({
+        ...searchState,
+        colourss: searchState.colourss.filter((colour) => colour !== target.value)
+      })
+    }
   }
 
 
@@ -76,6 +86,7 @@ const Products = ({data}) => {
     })
   }
 
+
   return (
     <Layout>
 
@@ -85,15 +96,16 @@ const Products = ({data}) => {
       </header>
 
       <div className="products">
+      
       <div className="filters">
-      <form>
+    <form>
         <h2>Filters</h2>
 
         <div className="filter-options">
 
           <fieldset>
-             <input type="search" name="search" id="filterName" placeholder="Search" value={query} onChange={handleQueryChange} className="field search" autoComplete="off" />
-             <span className="material-icons-round">search</span>
+            <span className="material-icons-round">search</span>
+            <input type="search" name="search" id="filterName" placeholder="Search" value={query} onChange={handleQueryChange} className="field search" autoComplete="off" />
           </fieldset>
         
 
@@ -178,8 +190,9 @@ const Products = ({data}) => {
             <option value="newest">Newest releases</option>
           </select>
         </fieldset>
-          </form>
+      </form>
       </div>
+      
       
       <SearchResults result={searchResult} />
       </div>

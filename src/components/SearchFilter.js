@@ -3,14 +3,14 @@ import React from 'react'
 const SearchFilter = () => {
   return (
     <div className="filters">
-      <form>
+    <form>
         <h2>Filters</h2>
 
         <div className="filter-options">
 
           <fieldset>
-             <input type="search" name="search" id="filterName" placeholder="Search" value={query} onChange={handleQueryChange} className="field search" autoComplete="off" />
-             <span className="material-icons-round">search</span>
+            <span className="material-icons-round">search</span>
+            <input type="search" name="search" id="filterName" placeholder="Search" value={query} onChange={handleQueryChange} className="field search" autoComplete="off" />
           </fieldset>
         
 
@@ -95,7 +95,7 @@ const SearchFilter = () => {
             <option value="newest">Newest releases</option>
           </select>
         </fieldset>
-          </form>
+      </form>
       </div>
   )
 }

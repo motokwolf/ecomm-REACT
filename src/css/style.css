@@ -42,7 +42,7 @@ body {
 .card-figure {
     margin-top: 0;
     position: relative;
-    background-color: white;
+    background-color: #d6d6d6;
     margin-bottom: 0;
     padding: 0 0;
     
@@ -94,6 +94,10 @@ figure {
         padding: 0.3em;
         }
 
+    .your-products {
+        padding-right: 20%;
+    }
+
 
 
 .page-header {
@@ -121,7 +125,6 @@ figure {
     /* search */
 
     .search {
-        margin: 1em;
         padding-left: 20px;
         display: flex;
         width: max-content;
@@ -160,6 +163,7 @@ figure {
         display: none;
         background-color: var(--primary-col-fill);
         box-shadow: 1px 1px 5px;
+        padding: var(--pad-and-gap);
     }
     
     .menu a {
@@ -253,10 +257,9 @@ fieldset {
 }
 
 .filter-options {
-    display: grid;
-    grid-template-columns: auto auto;
-    grid-template-areas:
-    " sort-field sort-field "
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
 }
 
     .sort-field {
@@ -268,8 +271,7 @@ fieldset {
         padding: 0.8em;
         font-family: var(--font-text);
         border-color: var(--primary-lightest);
-        margin: var(--pad-and-gap);
-
+        margin-top: calc(var(--pad-and-gap)/2);
     }
     
     .color-opt {
@@ -430,7 +432,7 @@ fieldset {
 
 .product {
     
-    margin: 0em 0em 6em 0em;
+    margin: 0em 0em 3em 0em;
 }
 
             .product > form, .product > footer  {
@@ -610,6 +612,7 @@ button:hover {
             display: flex;
             margin: var(--pad-and-gap);
             box-shadow: none;
+            padding: var(--pad-and-gap);
             
         }
         
@@ -698,12 +701,15 @@ button:hover {
   .bigimg {
     grid-column: span 3;
     background: gray;
+    height: 300px;
+
   }
   
   .thumb {
     opacity: 70%;
     height: auto;
     object-fit: cover;
+    height: 80px;
   }
 
   .thumb:hover {
