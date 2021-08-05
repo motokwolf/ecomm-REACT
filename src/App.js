@@ -1,7 +1,10 @@
 import React from 'react'
-import { BrowserRouter as Router, Switch, Route} from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom'
+import UserContext from './contexts/users'
 import Products from 'pages/Products'
 import OneProduct from  'pages/OneProduct'
+import Fail from 'pages/Fail'
+
 
 const App = () => {
 
@@ -172,13 +175,26 @@ const App = () => {
     }
   ]
 
+const shoppingCart = [
+   
+]
+
+
+
+
   // Generate one ProductRow per object above.
 
   return (
     <Router>
         <Switch>
             <Route exact path="/">  <Products data={productsAr} />  </Route>
-            <Route path="/oneproduct">  <OneProduct data={productsAr} />  </Route>
+            <Route path="/oneproduct/:slug">
+                <UserContext.Provider value={userData}>
+                     <OneProduct />
+                </UserContext.Provider>
+            </Route>
+            <Route path="/404"><Fail /></Route>
+            <Redirect to="/404" />
         </Switch>
     </Router>
   )

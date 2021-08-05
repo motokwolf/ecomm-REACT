@@ -1,14 +1,16 @@
-import React, {useState} from 'react'
+import React, {useContext} from 'react'
 import Layout from 'components/Layout'
 import noImg from 'img/product.jpg'
 import Favorite from 'img/favorite.svg'
-import {useParams } from 'react-router'
+import {useParams} from 'react-router'
 import Cart from 'img/cart.svg'
+import UserContext from '../contexts/users'
 
 
-const OneProduct = ({data}) => {
+const OneProduct = () => {
 
 const {slug} = useParams()
+const userData = useContext(UserContext)
 
 
     return (
