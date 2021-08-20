@@ -6,6 +6,7 @@ import {Link} from 'react-router-dom'
 const ProductRow = ({data}) => {
   const {id, name, ins, description, rating, colours, img} = data
 
+
   const ColourOptions = () => {
 
     colours.forEach(colour =>{
