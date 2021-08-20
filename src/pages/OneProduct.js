@@ -18,13 +18,12 @@ const {name, ins, description, rating, colours, img} = singleProduct
     return (
     <Layout>
       <main>
+      <h1 style={{fontSize: `3em`, textAlign: `center`}}>{name}</h1>
       <article className="one-product">
-        <h1 style={{fontSize: `3em`, textAlign: `center`}}>{name}</h1>
-        <div className="block">
-          <div style={{width:`200px`, margin: `0`}}>
+        
+            <div style={{maxWidth:`250px`, margin: `0`}}>
             <div className="gallery img-product" >
-              <img className="bigimg" id="bigimg" alt="Product Image" src={`../src/img/${img}`} />
-             
+              <img className="bigimg" id="bigimg" alt="Product Image" src={require(`../img/${img}`).default} />
             </div>
           </div>
           <header className="product-info">
@@ -33,8 +32,7 @@ const {name, ins, description, rating, colours, img} = singleProduct
               <dd>{rating}<span className="material-icons-round">star</span><span className="material-icons-round">star</span><span className="material-icons-round">star</span><span className="material-icons-round">star</span><span className="material-icons-round">star</span></dd>
             </dl>
           </header>
-        </div>
-        <form className="product-option">
+               <form className="product-option">
           <fieldset className="sort-field">
             <label  htmlFor="sort">Colours</label>
             <select name="sort" id="sort">

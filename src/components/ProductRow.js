@@ -25,7 +25,7 @@ const ProductRow = ({data}) => {
             <figure className="card-figure">
               <Link to={`/oneproduct/${id}`}>
               <div className="card-img-container">
-                  <img className="card-image" src={`../src/img/${img}`} alt={`Product Image: ${name}`} title={name}/>  
+                  <img className="card-image" src={require(`../img/${img}`).default} alt={`Product Image: ${name}`} title={name}/>  
               </div>
               </Link>
             </figure>
