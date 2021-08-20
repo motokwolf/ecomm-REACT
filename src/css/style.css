@@ -522,6 +522,18 @@ button:hover {
         vertical-align: middle;
         padding: 0.2em;
     }
+
+    .block {
+        display: flex;
+        flex-flow: row no-wrap;
+        justify-content: space-around;
+    }
+    .cartRow li {
+    display: flex;}
+    .cartRow li > :first-child {
+
+        flex-grow: 1;
+    };
 /* smallest viewport (mobile) */
 
 
@@ -577,7 +589,7 @@ button:hover {
 
 /* Large Viewport */
 
-@media screen and (min-width: 70em) {
+@media screen and (min-width: 60em) {
 
     .products {
         width: 65em;
@@ -673,7 +685,7 @@ button:hover {
 
 /* largest viewport */
 
-@media screen and (min-width: 90em) {
+@media screen and (min-width: 80em) {
 
     .products {
         width: 85em;
@@ -716,3 +728,15 @@ button:hover {
       opacity: 100%;
   }
 
+  .center {
+      display: flex;
+      flex-flow: column;
+      min-height: 70vh;
+      max-width: 600px;
+      margin: 0 auto;
+      font-size: 1.2em;
+  }
+
+  .block {
+      display: block;
+  }

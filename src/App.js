@@ -1,17 +1,41 @@
-import React from 'react'
-import { BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom'
-import UserContext from './contexts/users'
+import React, {useState, useEffect} from 'react'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import UserContext from 'contexts/UserContext'
 import Products from 'pages/Products'
 import OneProduct from  'pages/OneProduct'
+import Cart from  'pages/Cart'
 import Fail from 'pages/Fail'
 
 
 const App = () => {
 
-  // fetch() from the server, this is the result...
-  //For Ecoom.. these are similar
+ //user?
+ const [userData, setUserData] = useState({
+    id:123,
+    username: `toki`,
+    photo: `user.png`,
+    userFav: [],
+    userCart: [{
+        id: 1,
+        name: `Pilot Fountain Pen Kakuno`,
+        ins: 68.50,
+        description: `Sailor Japanese Pen Company takes pride in the professionally skilled craftsman who ensure each nib is perfect.`,
+        rating: 5.0,
+        colours: [ `black`, `white` ],
+        img: `product01.jpg`,
+    },
+    {
+        id: 2,
+        name: `Pilot Metropolitan`,
+        ins: 30.00,
+        description: `Includes one proprietary Pilot squeeze converter for use with bottled ink, and one proprietary ink cartridge.`,
+        rating: 2.5,
+        colours: [ `silver`,  `white`, `blue`] ,
+        img: `product02.jpg`,
+    }],
+});
 
-  const productsAr = [
+const productsAr = [
     {
         id: 1,
         name: `Pilot Fountain Pen Kakuno`,
@@ -175,27 +199,41 @@ const App = () => {
     }
   ]
 
-const shoppingCart = [
-   
-]
+const handleAddCart =  (event, name) => {
+
+  const cproduct = productsAr.find(product => product.name.includes(name))
+  userCart.push(cproduct)
+  
+}
 
 
 
+const toggleFavourite = (id) => {
+        console.log(id)
+        if (userData.userFav.includes(id)) {
+          // remove
+          setUserData({...userData, userFav: userData.userFav.filter((fav) => fav !== id)})
+        } else {
+          // Add
+          setUserData({...userData, userFav: [...userData.userFav, id]})
+        }
+      }
 
-  // Generate one ProductRow per object above.
 
   return (
     <Router>
+        <UserContext.Provider value={{data:userData, handleAddCart:handleAddCart, toggleFavourite:toggleFavourite, handleAddCart:handleAddCart}}>
         <Switch>
-            <Route exact path="/">  <Products data={productsAr} />  </Route>
+            <Route exact path="/"><Products data={productsAr} />  </Route>
             <Route path="/oneproduct/:slug">
                 <UserContext.Provider value={userData}>
-                     <OneProduct />
+                     <OneProduct data={productsAr}/>
                 </UserContext.Provider>
             </Route>
-            <Route path="/404"><Fail /></Route>
-            <Redirect to="/404" />
+            <Route path="/cart"><Cart data={userData}/></Route>
+            <Route path="*"><Fail /></Route>
         </Switch>
+        </UserContext.Provider>
     </Router>
   )
 

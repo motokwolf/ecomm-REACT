@@ -1,12 +1,37 @@
-import React from 'react'
+import React, {useState} from 'react'
 import Favorite from 'img/favorite.svg'
 import Cart from 'img/cart.svg'
 
-const ProductButtons = () => {
+
+
+const ProductButtons = ({value=false, style, ...otherProps}) => {
+  
+    // Store the current state of the favourite button
+    const [isFavourite, setIsFavourite] = useState(value)
+
+  
+    // Set some basic styles, as well as allow for custom styles (via "style" prop) as well
+    const cssStyle = {
+      font: `inherit`,
+      cursor: `pointer`,
+      ...style
+    }
+    
+    // Handle inverting the isFavourite state variable
+    const invertFav = (event) => {
+      setIsFavourite( !isFavourite )
+       // flip a boolean using the NOT operator (!)
+      
+    
+    }
+
+
+
   return (
     <footer className="productbuttons">
-      <button type="button"><img src={Cart} alt="Shopping Cart" width="24" /> Add to Cart</button>
-      <button type="button"><img src={Favorite} alt="Favorites" width="24" /></button>
+      <button type="button" onClick={() => updater(id)}><img src={Cart} alt="Shopping Cart" width="24" /> Add to Cart</button>
+      <button type="button" onClick={invertFav} style={cssStyle} {...otherProps}>{(isFavourite) ? `❤️` : `🤍`
+			}</button>
     </footer>
   )
 }

@@ -194,7 +194,7 @@ const Products = ({data}) => {
       </div>
       
       
-      <SearchResults result={searchResult} />
+      <SearchResults result={data} />
       </div>
     </Layout>
   )

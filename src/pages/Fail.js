@@ -13,4 +13,4 @@ const Fail = () => {
     )
 }
 
-export default Fail
+export default Fail 
