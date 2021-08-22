@@ -48,6 +48,14 @@ body {
     
 }
 
+.nav-buttons {
+    padding: 1em;
+}
+
+.nav-buttons p button {
+    margin: 1em;
+}
+
 figure {
     margin: 0 0 1.5rem;
 }
@@ -93,10 +101,6 @@ figure {
     .your-products > li {
         padding: 0.3em;
         }
-
-    .your-products {
-        padding-right: 20%;
-    }
 
 
 
@@ -458,13 +462,20 @@ fieldset {
 button {
     padding: 0.5em var(--pad-and-gap);
     background-color: var(--secondary-alt);
-    color: #ffffff;
+    color: black;
     text-transform: uppercase;
-    font-family: var(--font-tittle);
+    font-family: var(--font-text);
+    font-size: 1.2em;
     /* transition: 0.3s; */
     cursor: pointer;
     border: none;
 }
+
+.fav {
+    color:  #bd162c;
+    -webkit-text-stroke: 1px white;
+}
+
 
 button:hover {
     opacity: 0.7;
@@ -474,6 +485,10 @@ button:hover {
    padding-left: calc(var(--pad-and-gap)*2);
    padding-right: calc(var(--pad-and-gap)*2);
 
+}
+
+.products {
+    margin: 0 auto;
 }
 
 .pagination {
@@ -687,9 +702,6 @@ button:hover {
 
 @media screen and (min-width: 80em) {
 
-    .products {
-        width: 85em;
-    }
 
     .filter-options {
     justify-content: flex-start;

@@ -1,22 +1,51 @@
-import React from 'react'
+import React, {useState, useContext } from 'react'
 //import ProductRatings from 'components/ProductRatings'
 import ProductButtons from 'components/ProductButtons'
+import Cart from 'img/cart.svg'
+import Favorite from 'img/favorite.svg'
 import {Link} from 'react-router-dom'
+import userContext from 'contexts/UserContext'
 
-const ProductRow = ({data}) => {
+const ProductRow = ({value=false, style, data, ...otherProps}) => {
+
   const {id, name, ins, description, rating, colours, img} = data
 
+  const user = useContext(userContext).data
 
-  const ColourOptions = () => {
+  const {toggleFavourite} = useContext(userContext)
 
+  const {handleAddCart} = useContext(userContext)
+
+  /*const ColourOptions = { (
     colours.forEach(colour =>{
       const addColour = colour
       console.log(addColour)
-    })
-
-    return (
+    }) =>
+ (
       <li style={{listStyleType: `circle`}}>{colours}</li>
-    )}
+    )}*/
+    
+    const [isFavourite, setIsFavourite] = useState(value)
+
+  
+    // Handle inverting the isFavourite state variable
+    const invertFav = (event) => {
+      setIsFavourite( !isFavourite )
+       // flip a boolean using the NOT operator (!)
+    }
+
+    const handleFavouriteClick = (id) => {
+     // Favorite toggle
+     console.log(id)
+
+     toggleFavourite(id)
+    }
+
+    const updater = (id) => {
+      console.log(id)
+
+      handleAddCart(id)
+    }
 
   
   return (
@@ -39,19 +68,22 @@ const ProductRow = ({data}) => {
 
           <data value={ins}><ins>${ins.toFixed(2)}</ins></data>
 
-          <ProductButtons />
+          <footer className="productbuttons">
+            <button type="button" onClick={() => updater(id)}><img src={Cart} alt="Shopping Cart" width="24" /> Add to Cart <span><em>{(user.userCart.map(product => product.id).includes(id)) && ` +Added`}</em></span></button>
+            <button type="button" onClick={() => handleFavouriteClick(id)}><span className={ `${(user.userFav.includes(id)) && `fav`}`}>❤</span></button>
+            </footer>
 
           <p>{description} <Link to={`/oneproduct/${id}`} style={{textDecoration: `none`, letterSpacing: `2px`, fontWeight: `bold`}}>...</Link></p>
         
-          {/*<form>
+        {/* <form>
             <fieldset>  
               <legend style={{fontSize: `0.8em`}}>Colours Options</legend>
               <ul> 
-              <ColourOptions />
+              {ColourOptions}
               </ul>
             </fieldset>
-          </form>*/}
-          
+          </form>*/
+         }
         </div>
     </li>
   )

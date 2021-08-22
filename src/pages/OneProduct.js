@@ -43,7 +43,8 @@ const {name, ins, description, rating, colours, img} = singleProduct
             </select>
           </fieldset>
 
-          <button type="button" className="one-button"><img src={Cart} alt="Shopping Cart" width="24" style={{verticalAlign: `middle`}} /> Add to Cart</button>
+          <button type="button" className="one-button" onClick={() => updater(id)}><img src={Cart} alt="Shopping Cart" width="24" style={{verticalAlign: `middle`}} /> Add to Cart</button>
+          
         </form>
 
         <div className="description"> <p>{description}</p> </div>

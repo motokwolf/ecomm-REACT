@@ -1,15 +1,20 @@
 import React, {useContext} from 'react'
 import { Link } from 'react-router-dom'
-import SearchField from 'components/SearchField'
 import ScriptaLogo from 'img/Scripta-logo.svg'
 import Favorite from 'img/favorite.svg'
 import Cart from 'img/cart.svg'
+import userContext from 'contexts/UserContext'
 import {useParams} from 'react-router'
 
 
-const Header = () => {
+const Header = ({data}) => {
 
-  
+  const user = useContext(userContext).data
+
+  const {numFavs} = useContext(userContext)
+  const {numItems} = useContext(userContext)
+
+   
 
   function menuToggle() {
     document.getElementById("menu").classList.toggle("show");
@@ -38,8 +43,9 @@ const Header = () => {
       </div>
 
       <ul className="your-products">
-        <li><a href="/"><img src={Favorite} alt="Favorites" width="30" /></a></li>
-        <li><Link to="/cart"><img src={Cart} alt="Shopping Cart" width="30" /></Link></li>
+        <li style={{ whiteSpace: `nowrap`, textTransform: `capitalize`}} >Welcome, <b>{user.username}</b>!</li>
+        <li><img src={Favorite} alt="Favorites" width="30" /><span>{Boolean(numFavs) && numFavs}</span></li>
+        <li><Link to="/cart" style={{textDecoration: `none`, fontWeight: `bold`}}><img src={Cart} alt="Shopping Cart" width="30" /><span  >{Boolean(numItems) && numItems}</span></Link></li>
       </ul>
     </header>
   )

@@ -41,7 +41,7 @@ const SearchResults = ({result}) => {
            </p>
       <ul id="productsTable" className="productGrid">{theProduct}</ul>
       </section>
-      <div style={{textAlign: `center`}}>
+      <div className="nav-buttons" style={{textAlign: `center`}}>
           <p id="numProducts" >
             Page {pageNum} of {(Math.ceil(totalSize / sliceSize) === 0) ? `1` : (Math.ceil(totalSize / sliceSize))} 
            <br /><button onClick={()=> updatePage(pageNum-1)}>Previous Page</button><button onClick={()=> updatePage(pageNum+1)} >Next Page</button></p>
